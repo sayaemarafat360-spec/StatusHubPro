@@ -7,9 +7,6 @@ workflows:
   debug-workflow:
     name: Debug Build
     max_build_duration: 30
-    environment:
-      android: true
-      xcode: latest
     triggering:
       events:
         - push
@@ -41,9 +38,6 @@ workflows:
   release-workflow:
     name: Release Build (Unsigned)
     max_build_duration: 45
-    environment:
-      android: true
-      xcode: latest
     triggering:
       events:
         - push
