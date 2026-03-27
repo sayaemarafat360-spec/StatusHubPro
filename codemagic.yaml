@@ -28,6 +28,10 @@ workflows:
         script: |
           chmod +x ./gradlew
       
+      - name: Regenerate Gradle wrapper
+        script: |
+          gradle wrapper --gradle-version 8.2 || ./gradlew wrapper
+      
       - name: Debug Build
         script: |
           ./gradlew assembleDebug --parallel --build-cache
@@ -72,6 +76,10 @@ workflows:
       - name: Make gradlew executable
         script: |
           chmod +x ./gradlew
+      
+      - name: Regenerate Gradle wrapper
+        script: |
+          gradle wrapper --gradle-version 8.2 || ./gradlew wrapper
       
       - name: Create keystore.properties from environment
         script: |
