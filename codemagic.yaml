@@ -28,13 +28,9 @@ workflows:
         script: |
           chmod +x ./gradlew
       
-      - name: Regenerate Gradle wrapper
-        script: |
-          gradle wrapper --gradle-version 8.2 || ./gradlew wrapper
-      
       - name: Debug Build
         script: |
-          ./gradlew assembleDebug --parallel --build-cache
+          ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/apk/debug/*.apk
     publishing:
@@ -77,19 +73,6 @@ workflows:
         script: |
           chmod +x ./gradlew
       
-      - name: Regenerate Gradle wrapper
-        script: |
-          gradle wrapper --gradle-version 8.2 || ./gradlew wrapper
-      
-      - name: Create keystore.properties from environment
-        script: |
-          cat > "$CM_BUILD_DIR/keystore.properties" << EOF
-          storeFile=$CM_KEYSTORE_PATH
-          storePassword=$CM_KEYSTORE_PASSWORD
-          keyAlias=$CM_KEY_ALIAS
-          keyPassword=$CM_KEY_PASSWORD
-          EOF
-      
       - name: Clean build
         script: |
           ./gradlew clean
@@ -100,11 +83,11 @@ workflows:
       
       - name: Build Release APK
         script: |
-          ./gradlew assembleRelease --parallel --build-cache
+          ./gradlew assembleRelease
       
       - name: Build Release Bundle (AAB)
         script: |
-          ./gradlew bundleRelease --parallel --build-cache
+          ./gradlew bundleRelease
     artifacts:
       - app/build/outputs/apk/release/*.apk
       - app/build/outputs/bundle/release/*.aab
