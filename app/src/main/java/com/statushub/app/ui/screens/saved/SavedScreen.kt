@@ -18,10 +18,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-import androidx.compose.material.tabs.Tab
-import androidx.compose.material.tabs.TabRow
-import androidx.compose.material.tabs.TabRowDefaults
-import androidx.compose.material.tabs.tabIndicatorOffset
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -97,15 +93,7 @@ fun SavedScreen(
                 TabRow(
                     selectedTabIndex = tabs.indexOfFirst { it.first == selectedTab },
                     containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.onBackground,
-                    indicator = { tabPositions ->
-                        TabRowDefaults.Indicator(
-                            modifier = Modifier.tabIndicatorOffset(
-                                tabPositions[tabs.indexOfFirst { it.first == selectedTab }]
-                            ),
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                    }
+                    contentColor = MaterialTheme.colorScheme.onBackground
                 ) {
                     tabs.forEach { (tab, icon) ->
                         Tab(
