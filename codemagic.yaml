@@ -8,8 +8,8 @@ workflows:
     name: Debug Build
     max_build_duration: 30
     environment:
-      vars:
-        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+      android: true
+      xcode: latest
     triggering:
       events:
         - push
@@ -24,10 +24,6 @@ workflows:
           include: true
       cancel_previous_builds: true
     scripts:
-      - name: Set up local.properties
-        script: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      
       - name: Debug Build
         script: |
           ./gradlew assembleDebug --parallel --build-cache
@@ -46,10 +42,8 @@ workflows:
     name: Release Build (Unsigned)
     max_build_duration: 45
     environment:
-      vars:
-        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-        JAVA_OPTS: "-Xmx4g -XX:+UseParallelGC"
-        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.caching=true"
+      android: true
+      xcode: latest
     triggering:
       events:
         - push
@@ -61,17 +55,9 @@ workflows:
           include: true
       cancel_previous_builds: true
     scripts:
-      - name: Set up local.properties
-        script: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      
       - name: Clean build
         script: |
           ./gradlew clean
-      
-      - name: Run Lint
-        script: |
-          ./gradlew lintRelease --continue || true
       
       - name: Build Release APK (Unsigned)
         script: |
@@ -83,7 +69,6 @@ workflows:
     artifacts:
       - app/build/outputs/apk/release/*.apk
       - app/build/outputs/bundle/release/*.aab
-      - app/build/reports/lint-results-release.html
     publishing:
       email:
         recipients:
