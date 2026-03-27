@@ -43,8 +43,6 @@ workflows:
     name: Release Build
     max_build_duration: 45
     environment:
-      android_signing:
-        - keystore_reference: STATUSHUB_RELEASE_KEYSTORE
       vars:
         JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
         JAVA_OPTS: "-Xmx4g -XX:+UseParallelGC"
