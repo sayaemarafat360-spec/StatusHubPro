@@ -27,7 +27,7 @@ workflows:
       
       - name: Debug Build
         script: |
-          ./gradlew assembleDebug --parallel --build-cache
+          ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/apk/debug/*.apk
     publishing:
@@ -63,11 +63,11 @@ workflows:
       
       - name: Build Release APK (Unsigned)
         script: |
-          ./gradlew assembleRelease --parallel --build-cache
+          ./gradlew assembleRelease
       
       - name: Build Release Bundle (Unsigned)
         script: |
-          ./gradlew bundleRelease --parallel --build-cache
+          ./gradlew bundleRelease
     artifacts:
       - app/build/outputs/apk/release/*.apk
       - app/build/outputs/bundle/release/*.aab
