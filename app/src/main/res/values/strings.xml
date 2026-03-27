@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">StatusHub Pro</string>
+    <string name="app_description">HD Story &amp; Status Saver</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_saved">Saved</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Statuses</string>
+    <string name="home_no_statuses">No statuses found</string>
+    <string name="home_no_statuses_desc">Open WhatsApp to view statuses, then come back</string>
+    <string name="home_refresh">Refresh</string>
+    <string name="home_new_status">New</string>
+    <string name="home_permission_required">Storage permission required</string>
+    <string name="home_permission_desc">Grant storage permission to view WhatsApp statuses</string>
+    <string name="home_grant_permission">Grant Permission</string>
+    <string name="home_open_whatsapp">Open WhatsApp</string>
+    <string name="home_loading">Loading statuses…</string>
+
+    <!-- Preview Screen -->
+    <string name="preview_save">Save</string>
+    <string name="preview_share">Share</string>
+    <string name="preview_favorite">Favorite</string>
+    <string name="preview_saved">Saved!</string>
+    <string name="preview_video">Video</string>
+    <string name="preview_image">Image</string>
+
+    <!-- Saved Screen -->
+    <string name="saved_title">Saved</string>
+    <string name="saved_tab_all">All</string>
+    <string name="saved_tab_favorites">Favorites</string>
+    <string name="saved_tab_vault">Vault</string>
+    <string name="saved_no_items">No saved items</string>
+    <string name="saved_no_favorites">No favorites yet</string>
+    <string name="saved_no_vault">Vault is empty</string>
+    <string name="saved_delete_title">Delete item?</string>
+    <string name="saved_delete_desc">This action cannot be undone</string>
+    <string name="saved_delete">Delete</string>
+    <string name="saved_cancel">Cancel</string>
+    <string name="saved_bulk_delete">Delete Selected</string>
+    <string name="saved_move_to_vault">Move to Vault</string>
+
+    <!-- Vault -->
+    <string name="vault_title">Hidden Vault</string>
+    <string name="vault_locked">Vault is locked</string>
+    <string name="vault_unlock">Unlock with PIN</string>
+    <string name="vault_setup">Set up PIN</string>
+    <string name="vault_setup_desc">Create a 4-digit PIN to protect your vault</string>
+    <string name="vault_confirm_pin">Confirm PIN</string>
+    <string name="vault_enter_pin">Enter PIN</string>
+    <string name="vault_wrong_pin">Wrong PIN. Try again.</string>
+    <string name="vault_premium">Premium Feature</string>
+    <string name="vault_premium_desc">Unlock Hidden Vault with Premium</string>
+    <string name="vault_setup_biometric">Use biometric instead?</string>
+
+    <!-- Bulk Save -->
+    <string name="bulk_title">Select Items</string>
+    <string name="bulk_save">Save Selected</string>
+    <string name="bulk_select_all">Select All</string>
+    <string name="bulk_deselect_all">Deselect All</string>
+    <string name="bulk_saving">Saving…</string>
+    <string name="bulk_saved">%1$d items saved successfully</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_storage">Storage</string>
+    <string name="settings_save_location">Save Location</string>
+    <string name="settings_save_location_app">App Private Storage</string>
+    <string name="settings_save_location_public">Public Gallery</string>
+    <string name="settings_cache">Cache</string>
+    <string name="settings_clear_cache">Clear Cache</string>
+    <string name="settings_cache_size">Cache size: %1$s</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version %1$s</string>
+    <string name="settings_rate">Rate App</string>
+    <string name="settings_share">Share App</string>
+    <string name="settings_privacy">Privacy Policy</string>
+    <string name="settings_terms">Terms of Service</string>
+    
+    <!-- Premium -->
+    <string name="premium_title">Go Premium</string>
+    <string name="premium_subtitle">Unlock all features</string>
+    <string name="premium_feature_1">Remove all ads</string>
+    <string name="premium_feature_2">Hidden Vault access</string>
+    <string name="premium_feature_3">Priority support</string>
+    <string name="premium_feature_4">Faster loading</string>
+    <string name="premium_restore">Restore Purchase</string>
+    <string name="premium_unlocked">Premium Unlocked!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_start">Get Started</string>
+    <string name="onboarding_1_title">Welcome to StatusHub Pro</string>
+    <string name="onboarding_1_desc">Save WhatsApp statuses easily with one tap</string>
+    <string name="onboarding_2_title">How it works</string>
+    <string name="onboarding_2_desc">Open WhatsApp and view statuses. They will automatically appear here</string>
+    <string name="onboarding_3_title">Save &amp; Organize</string>
+    <string name="onboarding_3_desc">Save your favorite statuses and keep them organized</string>
+    <string name="onboarding_4_title">Hidden Vault</string>
+    <string name="onboarding_4_desc">Protect your private statuses with PIN protection (Premium)</string>
+    <string name="onboarding_permission_title">Storage Permission</string>
+    <string name="onboarding_permission_desc">We need permission to access and save WhatsApp statuses</string>
+    <string name="onboarding_permission_btn">Allow Permission</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Status Updates</string>
+    <string name="notification_new_status">New statuses available</string>
+    <string name="notification_new_status_desc">Tap to view %1$d new statuses</string>
+
+    <!-- Errors -->
+    <string name="error_generic">Something went wrong</string>
+    <string name="error_save_failed">Failed to save status</string>
+    <string name="error_share_failed">Failed to share status</string>
+    <string name="error_permission_denied">Permission denied</string>
+    <string name="error_whatsapp_not_found">WhatsApp not installed</string>
+
+    <!-- Ads -->
+    <string name="ad_watching">Watching ad…</string>
+    <string name="ad_rewarded">Watch ad to save</string>
+    <string name="ad_rewarded_desc">Watch a short ad to save this status</string>
+
+    <!-- Disclaimer -->
+    <string name="disclaimer">This app is not affiliated with WhatsApp. Users are responsible for content they save.</string>
+
+    <!-- Time -->
+    <string name="time_just_now">Just now</string>
+    <string name="time_minutes_ago">%1$d min ago</string>
+    <string name="time_hours_ago">%1$d hours ago</string>
+    <string name="time_today">Today</string>
+    <string name="time_yesterday">Yesterday</string>
+</resources>

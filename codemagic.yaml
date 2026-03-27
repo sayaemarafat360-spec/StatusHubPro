@@ -1,0 +1,115 @@
+# Codemagic CI/CD Configuration for StatusHub Pro
+# Documentation: https://docs.codemagic.io/yaml/basic-configuration/yaml-quick-start/
+
+workflows:
+  # Debug Workflow - For development and testing
+  debug-workflow:
+    name: Debug Build
+    max_build_duration: 30
+    environment:
+      android_signing:
+        - keystore_reference: STATUSHUB_DEBUG_KEYSTORE
+      vars:
+        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+      groups:
+        - adMob_credentials # Optional: AdMob configuration
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: develop
+          include: true
+        - pattern: feature/*
+          include: true
+        - pattern: bugfix/*
+          include: true
+      cancel_previous_builds: true
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      
+      - name: Debug Build
+        script: |
+          ./gradlew assembleDebug --parallel --build-cache
+    artifacts:
+      - app/build/outputs/apk/debug/*.apk
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com # Replace with your email
+        notify:
+          success: true
+          failure: true
+
+  # Release Workflow - For production builds
+  release-workflow:
+    name: Release Build
+    max_build_duration: 45
+    environment:
+      android_signing:
+        - keystore_reference: STATUSHUB_RELEASE_KEYSTORE
+      vars:
+        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+        JAVA_OPTS: "-Xmx4g -XX:+UseParallelGC"
+        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.caching=true"
+      groups:
+        - adMob_credentials
+        - play_store_credentials # For future Play Store publishing
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+        - pattern: release/*
+          include: true
+      tag_patterns:
+        - pattern: 'v*'
+          include: true
+      cancel_previous_builds: true
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      
+      - name: Create keystore.properties from environment
+        script: |
+          cat > "$CM_BUILD_DIR/keystore.properties" << EOF
+          storeFile=$CM_KEYSTORE_PATH
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          keyPassword=$CM_KEY_PASSWORD
+          EOF
+      
+      - name: Clean build
+        script: |
+          ./gradlew clean
+      
+      - name: Run Lint
+        script: |
+          ./gradlew lintRelease --continue || true
+      
+      - name: Build Release APK
+        script: |
+          ./gradlew assembleRelease --parallel --build-cache
+      
+      - name: Build Release Bundle (AAB)
+        script: |
+          ./gradlew bundleRelease --parallel --build-cache
+    artifacts:
+      - app/build/outputs/apk/release/*.apk
+      - app/build/outputs/bundle/release/*.aab
+      - app/build/reports/lint-results-release.html
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com # Replace with your email
+        notify:
+          success: true
+          failure: true
+      # Google Play Store publishing (uncomment when ready)
+      # google_play:
+      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+      #   track: internal
+      #   submit_as_draft: true

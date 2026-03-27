@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base Application Theme -->
+    <style name="Theme.StatusHub" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/accent_primary</item>
+        <item name="android:colorPrimaryDark">@color/dark_background</item>
+        <item name="android:colorAccent">@color/accent_primary</item>
+        <item name="android:statusBarColor">@color/dark_background</item>
+        <item name="android:navigationBarColor">@color/dark_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">@color/dark_background</item>
+    </style>
+
+    <!-- Splash Screen Theme -->
+    <style name="Theme.StatusHub.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/dark_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.StatusHub</item>
+    </style>
+
+    <!-- Light Theme -->
+    <style name="Theme.StatusHub.Light" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/accent_primary</item>
+        <item name="android:colorPrimaryDark">@color/light_background</item>
+        <item name="android:colorAccent">@color/accent_primary</item>
+        <item name="android:statusBarColor">@color/light_background</item>
+        <item name="android:navigationBarColor">@color/light_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">@color/light_background</item>
+    </style>
+
+    <!-- Premium Badge Style -->
+    <style name="PremiumBadge">
+        <item name="android:background">@drawable/bg_premium_badge</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+</resources>

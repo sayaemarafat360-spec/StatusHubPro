@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light Theme Colors -->
+    <color name="light_background">#FAFAFA</color>
+    <color name="light_surface">#FFFFFF</color>
+    <color name="light_card">#F5F5F5</color>
+    <color name="light_text_primary">#1A1A1A</color>
+    <color name="light_text_secondary">#757575</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="dark_background">#0F0F0F</color>
+    <color name="dark_surface">#1A1A1A</color>
+    <color name="dark_card">#252525</color>
+    <color name="dark_text_primary">#FFFFFF</color>
+    <color name="dark_text_secondary">#B0B0B0</color>
+
+    <!-- Accent Colors -->
+    <color name="accent_primary">#25D366</color>
+    <color name="accent_primary_dark">#1DA851</color>
+    <color name="accent_secondary">#128C7E</color>
+    <color name="accent_error">#FF5252</color>
+    <color name="accent_warning">#FFC107</color>
+    <color name="accent_success">#4CAF50</color>
+
+    <!-- Status Colors -->
+    <color name="status_new">#25D366</color>
+    <color name="status_video_indicator">#FFFFFF</color>
+    <color name="status_favorite">#FF4081</color>
+
+    <!-- Overlay Colors -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40FFFFFF</color>
+
+    <!-- Premium Gradient -->
+    <color name="premium_start">#FFD700</color>
+    <color name="premium_end">#FFA500</color>
+</resources>
