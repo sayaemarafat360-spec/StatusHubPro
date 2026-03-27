@@ -2,17 +2,13 @@
 # Documentation: https://docs.codemagic.io/yaml/basic-configuration/yaml-quick-start/
 
 workflows:
-  # Debug Workflow - For development and testing
+  # Debug Workflow - For development and testing (NO SIGNING REQUIRED)
   debug-workflow:
     name: Debug Build
     max_build_duration: 30
     environment:
-      android_signing:
-        - keystore_reference: STATUSHUB_DEBUG_KEYSTORE
       vars:
         JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-      groups:
-        - adMob_credentials # Optional: AdMob configuration
     triggering:
       events:
         - push
@@ -42,7 +38,7 @@ workflows:
           success: true
           failure: true
 
-  # Release Workflow - For production builds
+  # Release Workflow - For production builds (REQUIRES KEYSTORE)
   release-workflow:
     name: Release Build
     max_build_duration: 45
