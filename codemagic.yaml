@@ -1,13 +1,15 @@
 # Codemagic CI/CD Configuration for StatusHub Pro
 # Documentation: https://docs.codemagic.io/yaml/basic-configuration/yaml-quick-start/
+# NO KEYSTORE REQUIRED - Debug and Release builds are unsigned
 
 workflows:
-  # Debug Workflow - For development and testing (NO SIGNING REQUIRED)
+  # Debug Workflow - For development and testing
   debug-workflow:
     name: Debug Build
     max_build_duration: 30
     environment:
-      vars: {}
+      vars:
+        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
     triggering:
       events:
         - push
@@ -18,46 +20,40 @@ workflows:
           include: true
         - pattern: bugfix/*
           include: true
+        - pattern: main
+          include: true
       cancel_previous_builds: true
     scripts:
       - name: Set up local.properties
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
       
-      - name: Make gradlew executable
-        script: |
-          chmod +x ./gradlew
-      
       - name: Debug Build
         script: |
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --parallel --build-cache
     artifacts:
       - app/build/outputs/apk/debug/*.apk
     publishing:
       email:
         recipients:
-          - your-email@example.com # Replace with your email
+          - your-email@example.com
         notify:
           success: true
           failure: true
 
-  # Release Workflow - For production builds (REQUIRES KEYSTORE)
+  # Release Workflow - For production builds (UNSIGNED - No keystore needed)
   release-workflow:
-    name: Release Build
+    name: Release Build (Unsigned)
     max_build_duration: 45
     environment:
       vars:
+        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
         JAVA_OPTS: "-Xmx4g -XX:+UseParallelGC"
         GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.caching=true"
-      groups:
-        - adMob_credentials
-        - play_store_credentials # For future Play Store publishing
     triggering:
       events:
         - push
       branch_patterns:
-        - pattern: main
-          include: true
         - pattern: release/*
           include: true
       tag_patterns:
@@ -69,10 +65,6 @@ workflows:
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
       
-      - name: Make gradlew executable
-        script: |
-          chmod +x ./gradlew
-      
       - name: Clean build
         script: |
           ./gradlew clean
@@ -81,13 +73,13 @@ workflows:
         script: |
           ./gradlew lintRelease --continue || true
       
-      - name: Build Release APK
+      - name: Build Release APK (Unsigned)
         script: |
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease --parallel --build-cache
       
-      - name: Build Release Bundle (AAB)
+      - name: Build Release Bundle (Unsigned)
         script: |
-          ./gradlew bundleRelease
+          ./gradlew bundleRelease --parallel --build-cache
     artifacts:
       - app/build/outputs/apk/release/*.apk
       - app/build/outputs/bundle/release/*.aab
@@ -95,12 +87,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - your-email@example.com # Replace with your email
+          - your-email@example.com
         notify:
           success: true
           failure: true
-      # Google Play Store publishing (uncomment when ready)
-      # google_play:
-      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-      #   track: internal
-      #   submit_as_draft: true
