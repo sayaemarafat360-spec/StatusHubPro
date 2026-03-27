@@ -32,22 +32,6 @@ android {
         buildConfigField("String", "ADMOB_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\"")
     }
 
-    signingConfigs {
-        create("release") {
-            // These will be configured via environment variables in Codemagic
-            // For local development, create a keystore.properties file
-            val keystorePropertiesFile = rootProject.file("keystore.properties")
-            if (keystorePropertiesFile.exists()) {
-                val keystoreProperties = java.util.Properties()
-                keystoreProperties.load(java.io.FileInputStream(keystorePropertiesFile))
-                storeFile = file(keystoreProperties.getProperty("storeFile"))
-                storePassword = keystoreProperties.getProperty("storePassword") as CharSequence
-                keyAlias = keystoreProperties.getProperty("keyAlias")
-                keyPassword = keystoreProperties.getProperty("keyPassword") as CharSequence
-            }
-        }
-    }
-
     buildTypes {
         debug {
             isDebuggable = true
@@ -65,7 +49,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
             buildConfigField("boolean", "IS_PREMIUM", "false")
         }
     }
